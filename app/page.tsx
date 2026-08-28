@@ -48,7 +48,7 @@ export default function Home() {
           <div className="portrait-glow" aria-hidden="true" />
           <div className="portrait-frame">
             <img src={`${basePath}/amauri-daliessi.webp`} alt="Retrato profissional de Amauri Daliessi Junior" />
-            <div className="portrait-caption"><span><Sparkles size={14} /> Desenvolvimento com propósito</span><strong>Next.js · TypeScript · Supabase</strong></div>
+            <div className="portrait-caption"><span><Sparkles size={14} /> Sistemas · Processos · Qualidade</span><strong>Analista de Desenvolvimento TI</strong></div>
           </div>
           <div className="orbit-badge" aria-hidden="true"><Code2 size={23} /></div>
         </div>
