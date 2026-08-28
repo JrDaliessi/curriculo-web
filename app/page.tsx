@@ -1,6 +1,6 @@
 import {
   ArrowDown, ArrowUpRight, BriefcaseBusiness, CheckCircle2, Code2, Database, Download,
-  BadgeCheck, GitBranch, Github, GraduationCap, Mail, MapPin, PanelsTopLeft, Phone, Send,
+  BadgeCheck, GitBranch, Github, GraduationCap, Mail, MapPin, MessageCircle, PanelsTopLeft, Send,
   ShieldCheck, Sparkles, Workflow, Wrench,
 } from "lucide-react";
 import { SiteHeader } from "./site-header";
@@ -135,7 +135,7 @@ export default function Home() {
           <div><div className="section-kicker"><span>05</span> Vamos conversar</div><h2>Procurando alguém que una processos, código e qualidade?</h2></div>
           <div className="contact-actions">
             <a className="contact-main" href="mailto:juniordaliessi@gmail.com"><Send size={20} /> Enviar mensagem <ArrowUpRight size={18} /></a>
-            <a href="tel:+5519997538817"><Phone size={17} /> (19) 99753-8817</a>
+            <a href="https://wa.me/5519997538817?text=Ol%C3%A1%20Amauri%2C%20vi%20seu%20curr%C3%ADculo%20online%20e%20gostaria%20de%20conversar." target="_blank" rel="noreferrer" aria-label="Conversar com Amauri pelo WhatsApp"><MessageCircle size={17} /> WhatsApp · (19) 99753-8817</a>
             <a href="https://www.linkedin.com/in/juniordaliessi/" target="_blank" rel="noreferrer"><BadgeCheck size={17} /> LinkedIn</a>
           </div>
         </div>
