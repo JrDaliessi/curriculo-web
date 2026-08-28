@@ -3,6 +3,7 @@ import {
   BadgeCheck, GitBranch, GraduationCap, Mail, MapPin, PanelsTopLeft, Phone, Send,
   ShieldCheck, Sparkles, Workflow,
 } from "lucide-react";
+import { SiteHeader } from "./site-header";
 
 const skills = [
   { icon: Workflow, title: "Análise & processos", text: "Requisitos, regras de negócio, formulários, workflows, documentação, dashboards e melhoria contínua." },
@@ -26,13 +27,7 @@ export default function Home() {
     <main>
       <div className="scroll-progress" aria-hidden="true" />
       <div className="noise" aria-hidden="true" />
-      <header className="site-header">
-        <a className="brand" href="#inicio" aria-label="Ir para o início"><span>AD</span><strong>Amauri Daliessi</strong></a>
-        <nav aria-label="Navegação principal">
-          <a href="#sobre">Sobre</a><a href="#competencias">Competências</a><a href="#portfolio">Portfólio</a><a href="#trajetoria">Trajetória</a>
-          <a className="nav-contact" href="mailto:juniordaliessi@gmail.com">Contato <ArrowUpRight size={14} /></a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="hero shell" id="inicio">
         <div className="hero-copy">
