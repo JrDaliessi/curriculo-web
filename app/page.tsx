@@ -1,6 +1,6 @@
 import {
   ArrowDown, ArrowUpRight, BriefcaseBusiness, CheckCircle2, Code2, Database, Download,
-  BadgeCheck, GitBranch, GraduationCap, Mail, MapPin, PanelsTopLeft, Phone, Send,
+  BadgeCheck, GitBranch, Github, GraduationCap, Mail, MapPin, PanelsTopLeft, Phone, Send,
   ShieldCheck, Sparkles, Workflow,
 } from "lucide-react";
 import { SiteHeader } from "./site-header";
@@ -13,12 +13,12 @@ const skills = [
 ];
 
 const projects = [
-  { index: "01", title: "Gestão de Clube Social", description: "Plataforma de processos com associados, bar, portaria, eventos, reservas, pagamentos, QR Code, perfis de acesso, indicadores e auditoria.", stack: ["Next.js", "Supabase", "Mercado Pago", "PWA"], href: "https://github.com/JrDaliessi/clube-social-showcase" },
-  { index: "02", title: "Gestão de Eventos", description: "Sistema com calendário, Kanban, fornecedores, documentos, cronogramas, contratos, regras de negócio e acompanhamento por status.", stack: ["Next.js", "Supabase", "Serwist", "dnd-kit"], href: "https://github.com/JrDaliessi/gestao-eventos-showcase" },
-  { index: "03", title: "FinControl", description: "PWA com cadastros financeiros, dashboard, autenticação, RLS, relatórios e arquitetura Feature-Based desenvolvida com TDD.", stack: ["TypeScript", "Supabase", "Jest", "TDD"], href: "https://github.com/JrDaliessi/fincontrol-showcase" },
-  { index: "04", title: "Iluminação Condominial", description: "Workflow de ativos e ocorrências com Kanban, prioridades, SLA, relatórios, auditoria, reincidência e validação em campo.", stack: ["Next.js", "Supabase", "Zod", "PWA"], href: "https://github.com/JrDaliessi/iluminacao-condominio-showcase" },
-  { index: "05", title: "BarberShop SaaS", description: "SaaS responsivo para agenda, clientes, profissionais, serviços, comissões, pagamentos e dashboards operacionais.", stack: ["Next.js", "Supabase", "Stripe", "Recharts"], href: "https://github.com/JrDaliessi/barbearia-saas-showcase" },
-  { index: "06", title: "Bingo Studio", description: "Editor visual e gerador de cartelas 1–75 com deduplicação, projetos na nuvem e layouts A4 preparados para impressão.", stack: ["Next.js", "Supabase", "React Hook Form", "Jest"], href: "https://github.com/JrDaliessi/bingo-studio-showcase" },
+  { index: "01", title: "FinControl", description: "PWA com cadastros financeiros, dashboard, autenticação, RLS, relatórios e arquitetura Feature-Based desenvolvida com TDD.", stack: ["TypeScript", "Supabase", "Jest", "TDD"], appHref: "https://fin-control-two.vercel.app", githubHref: "https://github.com/JrDaliessi/fincontrol-showcase" },
+  { index: "02", title: "Gestão de Clube Social", description: "Plataforma de processos com associados, bar, portaria, eventos, reservas, pagamentos, QR Code, perfis de acesso, indicadores e auditoria.", stack: ["Next.js", "Supabase", "Mercado Pago", "PWA"], appHref: "https://social-club-three.vercel.app", githubHref: "https://github.com/JrDaliessi/clube-social-showcase" },
+  { index: "03", title: "Gestão de Eventos", description: "Sistema com calendário, Kanban, fornecedores, documentos, cronogramas, contratos, regras de negócio e acompanhamento por status.", stack: ["Next.js", "Supabase", "Serwist", "dnd-kit"], appHref: "https://agenda-eventos-jrdaliessis-projects.vercel.app", githubHref: "https://github.com/JrDaliessi/gestao-eventos-showcase" },
+  { index: "04", title: "BarberShop SaaS", description: "SaaS responsivo para agenda, clientes, profissionais, serviços, comissões, pagamentos e dashboards operacionais.", stack: ["Next.js", "Supabase", "Stripe", "Recharts"], appHref: "https://barber-shop-five-blush.vercel.app", githubHref: "https://github.com/JrDaliessi/barbearia-saas-showcase" },
+  { index: "05", title: "Iluminação Condominial", description: "Workflow de ativos e ocorrências com Kanban, prioridades, SLA, relatórios, auditoria, reincidência e validação em campo.", stack: ["Next.js", "Supabase", "Zod", "PWA"], appHref: "https://manuten-o-condominio.vercel.app", githubHref: "https://github.com/JrDaliessi/iluminacao-condominio-showcase" },
+  { index: "06", title: "Bingo Studio", description: "Editor visual e gerador de cartelas 1–75 com deduplicação, projetos na nuvem e layouts A4 preparados para impressão.", stack: ["Next.js", "Supabase", "React Hook Form", "Jest"], appHref: "https://bingo-jrdaliessis-projects.vercel.app", githubHref: "https://github.com/JrDaliessi/bingo-studio-showcase" },
 ];
 
 export default function Home() {
@@ -78,11 +78,17 @@ export default function Home() {
           <div className="section-kicker"><span>03</span> Projetos de desenvolvimento e soluções web</div>
           <div className="section-heading portfolio-heading"><h2>Soluções desenvolvidas para desafios reais.</h2><p>Projetos autorais que reúnem arquitetura, processos, regras de negócio e experiência do usuário em produtos web funcionais.</p></div>
           <div className="projects-grid">
-            {projects.map((project) => <a className="project-card" href={project.href} target="_blank" rel="noreferrer" key={project.title}>
-              <div className="project-top"><span className="project-index">{project.index}</span><ArrowUpRight size={22} /></div>
-              <PanelsTopLeft className="project-mark" size={38} strokeWidth={1.2} /><h3>{project.title}</h3><p>{project.description}</p>
-              <div className="tags">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
-            </a>)}
+            {projects.map((project) => <article className="project-card" key={project.title}>
+              <a className="project-main" href={project.appHref} target="_blank" rel="noreferrer" aria-label={`Abrir aplicativo ${project.title}`}>
+                <div className="project-top"><span className="project-index">{project.index}</span><span className="project-online">Aplicação online <ArrowUpRight size={15} /></span></div>
+                <PanelsTopLeft className="project-mark" size={38} strokeWidth={1.2} /><h3>{project.title}</h3><p>{project.description}</p>
+                <div className="tags">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
+              </a>
+              <div className="project-actions">
+                <a className="project-app-link" href={project.appHref} target="_blank" rel="noreferrer">Abrir aplicativo <ArrowUpRight size={16} /></a>
+                <a className="project-github-link" href={project.githubHref} target="_blank" rel="noreferrer" aria-label={`Ver código do ${project.title} no GitHub`}><Github size={18} /><span>GitHub</span></a>
+              </div>
+            </article>)}
           </div>
           <div className="portfolio-link"><a href="https://github.com/JrDaliessi" target="_blank" rel="noreferrer"><GitBranch size={19} /> Ver perfil completo no GitHub <ArrowUpRight size={17} /></a></div>
         </div>
