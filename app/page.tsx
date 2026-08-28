@@ -75,8 +75,8 @@ export default function Home() {
 
       <section className="section portfolio-section reveal" id="portfolio">
         <div className="shell">
-          <div className="section-kicker"><span>03</span> Projetos selecionados</div>
-          <div className="section-heading portfolio-heading"><h2>Soluções que simulam desafios reais.</h2><p>Arquitetura, processos e experiência do usuário reunidos em produtos funcionais.</p></div>
+          <div className="section-kicker"><span>03</span> Projetos de desenvolvimento e soluções web</div>
+          <div className="section-heading portfolio-heading"><h2>Soluções desenvolvidas para desafios reais.</h2><p>Projetos autorais que reúnem arquitetura, processos, regras de negócio e experiência do usuário em produtos web funcionais.</p></div>
           <div className="projects-grid">
             {projects.map((project) => <a className="project-card" href={project.href} target="_blank" rel="noreferrer" key={project.title}>
               <div className="project-top"><span className="project-index">{project.index}</span><ArrowUpRight size={22} /></div>
