@@ -1,7 +1,7 @@
 import {
   ArrowDown, ArrowUpRight, BriefcaseBusiness, CheckCircle2, Code2, Database, Download,
   BadgeCheck, GitBranch, Github, GraduationCap, Mail, MapPin, PanelsTopLeft, Phone, Send,
-  ShieldCheck, Sparkles, Workflow,
+  ShieldCheck, Sparkles, Workflow, Wrench,
 } from "lucide-react";
 import { SiteHeader } from "./site-header";
 
@@ -9,7 +9,8 @@ const skills = [
   { icon: Workflow, title: "Análise & processos", text: "Requisitos, regras de negócio, formulários, workflows, documentação, dashboards e melhoria contínua." },
   { icon: Code2, title: "Desenvolvimento", text: "JavaScript, TypeScript, HTML5, CSS3, Next.js, React, Node.js, Tailwind CSS e PWA." },
   { icon: Database, title: "Dados & integrações", text: "SQL, PostgreSQL, Supabase, autenticação, Row Level Security, APIs REST e webhooks." },
-  { icon: ShieldCheck, title: "Qualidade & suporte", text: "Jest, Testing Library, TDD, testes funcionais, troubleshooting, Git/GitHub e métodos ágeis." },
+  { icon: ShieldCheck, title: "Qualidade & suporte", text: "Jest, Testing Library, TDD, testes funcionais, validação de requisitos, troubleshooting e suporte ao usuário." },
+  { icon: Wrench, title: "Ferramentas", text: "Git/GitHub, Windows, Linux, Microsoft 365, métodos ágeis, fundamentos de ITIL e IA aplicada ao desenvolvimento com Codex (OpenAI) e Claude (Anthropic). Disponibilidade para capacitação em Fluig, Protheus e SOAP." },
 ];
 
 const projects = [
