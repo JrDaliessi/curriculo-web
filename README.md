@@ -5,7 +5,7 @@ Currículo e portfólio profissional responsivo, criado para apresentar experiê
 ## Página publicada
 
 - [Abrir currículo online](https://amauri-daliessi-portfolio.juniordaliessi.chatgpt.site)
-- GitHub Pages: será disponibilizado após a primeira execução do workflow.
+- A versão principal será publicada pela Vercel, integrada a este repositório.
 
 ## Tecnologias
 
@@ -13,7 +13,7 @@ Currículo e portfólio profissional responsivo, criado para apresentar experiê
 - TypeScript
 - CSS responsivo
 - Lucide Icons
-- GitHub Actions e GitHub Pages
+- Deploy contínuo pela Vercel
 
 ## Executar localmente
 
