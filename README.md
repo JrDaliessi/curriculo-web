@@ -4,8 +4,8 @@ Currículo e portfólio profissional responsivo, criado para apresentar experiê
 
 ## Página publicada
 
-- [Abrir currículo online](https://amauri-daliessi-portfolio.juniordaliessi.chatgpt.site)
-- A versão principal será publicada pela Vercel, integrada a este repositório.
+- [Abrir currículo online](https://curriculo-web-ten.vercel.app)
+- Hospedagem de produção na Vercel.
 
 ## Tecnologias
 
@@ -13,7 +13,7 @@ Currículo e portfólio profissional responsivo, criado para apresentar experiê
 - TypeScript
 - CSS responsivo
 - Lucide Icons
-- Deploy contínuo pela Vercel
+- Deploy pela Vercel
 
 ## Executar localmente
 
