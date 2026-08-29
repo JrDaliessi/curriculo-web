@@ -1,9 +1,13 @@
 import {
   ArrowDown, ArrowUpRight, BriefcaseBusiness, CheckCircle2, Code2, Database, Download,
-  BadgeCheck, GitBranch, Github, GraduationCap, Mail, MapPin, MessageCircle, PanelsTopLeft, Send,
+  Activity, BadgeCheck, GitBranch, Github, GraduationCap, Mail, MapPin, MessageCircle, PanelsTopLeft, Send,
   ShieldCheck, Sparkles, Workflow, Wrench,
 } from "lucide-react";
 import { SiteHeader } from "./site-header";
+import { ProjectActivitySection } from "./project-activity";
+import { getProjectActivity } from "./github-activity";
+
+export const revalidate = 3600;
 
 const skills = [
   { icon: Workflow, title: "Análise & processos", text: "Requisitos, regras de negócio, formulários, workflows, documentação, dashboards e melhoria contínua." },
@@ -14,16 +18,19 @@ const skills = [
 ];
 
 const projects = [
-  { index: "01", title: "FinControl", description: "PWA com cadastros financeiros, dashboard, autenticação, RLS, relatórios e arquitetura Feature-Based desenvolvida com TDD.", stack: ["TypeScript", "Supabase", "Jest", "TDD"], appHref: "https://fin-control-two.vercel.app", githubHref: "https://github.com/JrDaliessi/fincontrol-showcase" },
-  { index: "02", title: "Gestão de Clube Social", description: "Plataforma de processos com associados, bar, portaria, eventos, reservas, pagamentos, QR Code, perfis de acesso, indicadores e auditoria.", stack: ["Next.js", "Supabase", "Mercado Pago", "PWA"], appHref: "https://social-club-three.vercel.app", githubHref: "https://github.com/JrDaliessi/clube-social-showcase" },
-  { index: "03", title: "Gestão de Eventos", description: "Sistema com calendário, Kanban, fornecedores, documentos, cronogramas, contratos, regras de negócio e acompanhamento por status.", stack: ["Next.js", "Supabase", "Serwist", "dnd-kit"], appHref: "https://agenda-eventos-jrdaliessis-projects.vercel.app", githubHref: "https://github.com/JrDaliessi/gestao-eventos-showcase" },
-  { index: "04", title: "BarberShop SaaS", description: "SaaS responsivo para agenda, clientes, profissionais, serviços, comissões, pagamentos e dashboards operacionais.", stack: ["Next.js", "Supabase", "Stripe", "Recharts"], appHref: "https://barber-shop-five-blush.vercel.app", githubHref: "https://github.com/JrDaliessi/barbearia-saas-showcase" },
-  { index: "05", title: "Iluminação Condominial", description: "Workflow de ativos e ocorrências com Kanban, prioridades, SLA, relatórios, auditoria, reincidência e validação em campo.", stack: ["Next.js", "Supabase", "Zod", "PWA"], appHref: "https://manuten-o-condominio.vercel.app", githubHref: "https://github.com/JrDaliessi/iluminacao-condominio-showcase" },
-  { index: "06", title: "Bingo Studio", description: "Editor visual e gerador de cartelas 1–75 com deduplicação, projetos na nuvem e layouts A4 preparados para impressão.", stack: ["Next.js", "Supabase", "React Hook Form", "Jest"], appHref: "https://bingo-jrdaliessis-projects.vercel.app", githubHref: "https://github.com/JrDaliessi/bingo-studio-showcase" },
+  { id: "fincontrol", index: "01", title: "FinControl", description: "PWA com cadastros financeiros, dashboard, autenticação, RLS, relatórios e arquitetura Feature-Based desenvolvida com TDD.", stack: ["TypeScript", "Supabase", "Jest", "TDD"], appHref: "https://fin-control-two.vercel.app", githubHref: "https://github.com/JrDaliessi/fincontrol-showcase" },
+  { id: "clube", index: "02", title: "Gestão de Clube Social", description: "Plataforma de processos com associados, bar, portaria, eventos, reservas, pagamentos, QR Code, perfis de acesso, indicadores e auditoria.", stack: ["Next.js", "Supabase", "Mercado Pago", "PWA"], appHref: "https://social-club-three.vercel.app", githubHref: "https://github.com/JrDaliessi/clube-social-showcase" },
+  { id: "eventos", index: "03", title: "Gestão de Eventos", description: "Sistema com calendário, Kanban, fornecedores, documentos, cronogramas, contratos, regras de negócio e acompanhamento por status.", stack: ["Next.js", "Supabase", "Serwist", "dnd-kit"], appHref: "https://agenda-eventos-jrdaliessis-projects.vercel.app", githubHref: "https://github.com/JrDaliessi/gestao-eventos-showcase" },
+  { id: "barbearia", index: "04", title: "BarberShop SaaS", description: "SaaS responsivo para agenda, clientes, profissionais, serviços, comissões, pagamentos e dashboards operacionais.", stack: ["Next.js", "Supabase", "Stripe", "Recharts"], appHref: "https://barber-shop-five-blush.vercel.app", githubHref: "https://github.com/JrDaliessi/barbearia-saas-showcase" },
+  { id: "iluminacao", index: "05", title: "Iluminação Condominial", description: "Workflow de ativos e ocorrências com Kanban, prioridades, SLA, relatórios, auditoria, reincidência e validação em campo.", stack: ["Next.js", "Supabase", "Zod", "PWA"], appHref: "https://manuten-o-condominio.vercel.app", githubHref: "https://github.com/JrDaliessi/iluminacao-condominio-showcase" },
+  { id: "bingo", index: "06", title: "Bingo Studio", description: "Editor visual e gerador de cartelas 1–75 com deduplicação, projetos na nuvem e layouts A4 preparados para impressão.", stack: ["Next.js", "Supabase", "React Hook Form", "Jest"], appHref: "https://bingo-jrdaliessis-projects.vercel.app", githubHref: "https://github.com/JrDaliessi/bingo-studio-showcase" },
 ];
 
-export default function Home() {
+export default async function Home() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const activity = await getProjectActivity();
+  const activityByProject = Object.fromEntries(activity.items.map((item) => [item.id, item]));
+  const projectLinks = Object.fromEntries(projects.map((project) => [project.id, project.appHref]));
   return (
     <main>
       <div className="scroll-progress" aria-hidden="true" />
@@ -85,6 +92,10 @@ export default function Home() {
                 <PanelsTopLeft className="project-mark" size={38} strokeWidth={1.2} /><h3>{project.title}</h3><p>{project.description}</p>
                 <div className="tags">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
               </a>
+              <a className="project-activity-link" href="#atividade" aria-label={`Ver atividade de desenvolvimento do projeto ${project.title}`}>
+                <Activity size={14} />
+                <span>{activityByProject[project.id].movementCount30d > 0 ? `${activityByProject[project.id].movementCount30d} movimentações em 30 dias` : `Atualizado ${activityByProject[project.id].lastActivityLabel}`}</span>
+              </a>
               <div className="project-actions">
                 <a className="project-app-link" href={project.appHref} target="_blank" rel="noreferrer">Abrir aplicativo <ArrowUpRight size={16} /></a>
                 <a className="project-github-link" href={project.githubHref} target="_blank" rel="noreferrer" aria-label={`Ver código do ${project.title} no GitHub`}><Github size={18} /><span>GitHub</span></a>
@@ -95,8 +106,10 @@ export default function Home() {
         </div>
       </section>
 
+      <ProjectActivitySection activity={activity} projectLinks={projectLinks} />
+
       <section className="section shell reveal" id="trajetoria">
-        <div className="section-kicker"><span>04</span> Trajetória</div>
+        <div className="section-kicker"><span>05</span> Trajetória</div>
         <div className="section-heading">
           <h2>Experiência que fortalece a tecnologia.</h2>
           <p>Responsabilidade, rastreabilidade, comunicação e atenção a processos aplicadas à transição para TI.</p>
@@ -132,7 +145,7 @@ export default function Home() {
 
       <section className="contact-section reveal" id="contato">
         <div className="shell contact-inner">
-          <div><div className="section-kicker"><span>05</span> Vamos conversar</div><h2>Procurando alguém que una processos, código e qualidade?</h2></div>
+          <div><div className="section-kicker"><span>06</span> Vamos conversar</div><h2>Procurando alguém que una processos, código e qualidade?</h2></div>
           <div className="contact-actions">
             <a className="contact-main" href="mailto:juniordaliessi@gmail.com"><Send size={20} /> Enviar mensagem <ArrowUpRight size={18} /></a>
             <a href="https://wa.me/5519997538817?text=Ol%C3%A1%20Amauri%2C%20vi%20seu%20curr%C3%ADculo%20online%20e%20gostaria%20de%20conversar." target="_blank" rel="noreferrer" aria-label="Conversar com Amauri pelo WhatsApp"><MessageCircle size={17} /> WhatsApp · (19) 99753-8817</a>
