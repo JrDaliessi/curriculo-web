@@ -4,7 +4,6 @@ import {
   ShieldCheck, Sparkles, Workflow, Wrench,
 } from "lucide-react";
 import { SiteHeader } from "./site-header";
-import { ProjectActivitySection } from "./project-activity";
 import { getProjectActivity } from "./github-activity";
 
 export const revalidate = 3600;
@@ -30,7 +29,6 @@ export default async function Home() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const activity = await getProjectActivity();
   const activityByProject = Object.fromEntries(activity.items.map((item) => [item.id, item]));
-  const projectLinks = Object.fromEntries(projects.map((project) => [project.id, project.appHref]));
   return (
     <main>
       <div className="scroll-progress" aria-hidden="true" />
@@ -92,10 +90,10 @@ export default async function Home() {
                 <PanelsTopLeft className="project-mark" size={38} strokeWidth={1.2} /><h3>{project.title}</h3><p>{project.description}</p>
                 <div className="tags">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
               </a>
-              <a className="project-activity-link" href="#atividade" aria-label={`Ver atividade de desenvolvimento do projeto ${project.title}`}>
+              <div className="project-activity-indicator">
                 <Activity size={14} />
                 <span>{activityByProject[project.id].movementCount30d > 0 ? `${activityByProject[project.id].movementCount30d} movimentações em 30 dias` : `Atualizado ${activityByProject[project.id].lastActivityLabel}`}</span>
-              </a>
+              </div>
               <div className="project-actions">
                 <a className="project-app-link" href={project.appHref} target="_blank" rel="noreferrer">Abrir aplicativo <ArrowUpRight size={16} /></a>
                 <a className="project-github-link" href={project.githubHref} target="_blank" rel="noreferrer" aria-label={`Ver código do ${project.title} no GitHub`}><Github size={18} /><span>GitHub</span></a>
@@ -106,10 +104,8 @@ export default async function Home() {
         </div>
       </section>
 
-      <ProjectActivitySection activity={activity} projectLinks={projectLinks} />
-
       <section className="section shell reveal" id="trajetoria">
-        <div className="section-kicker"><span>05</span> Trajetória</div>
+        <div className="section-kicker"><span>04</span> Trajetória</div>
         <div className="section-heading">
           <h2>Experiência que fortalece a tecnologia.</h2>
           <p>Responsabilidade, rastreabilidade, comunicação e atenção a processos aplicadas à transição para TI.</p>
@@ -145,7 +141,7 @@ export default async function Home() {
 
       <section className="contact-section reveal" id="contato">
         <div className="shell contact-inner">
-          <div><div className="section-kicker"><span>06</span> Vamos conversar</div><h2>Procurando alguém que una processos, código e qualidade?</h2></div>
+          <div><div className="section-kicker"><span>05</span> Vamos conversar</div><h2>Procurando alguém que una processos, código e qualidade?</h2></div>
           <div className="contact-actions">
             <a className="contact-main" href="mailto:juniordaliessi@gmail.com"><Send size={20} /> Enviar mensagem <ArrowUpRight size={18} /></a>
             <a href="https://wa.me/5519997538817?text=Ol%C3%A1%20Amauri%2C%20vi%20seu%20curr%C3%ADculo%20online%20e%20gostaria%20de%20conversar." target="_blank" rel="noreferrer" aria-label="Conversar com Amauri pelo WhatsApp"><MessageCircle size={17} /> WhatsApp · (19) 99753-8817</a>

@@ -52,7 +52,6 @@ export function SiteHeader() {
         <a href="#sobre">Sobre</a>
         <a href="#competencias">Competências</a>
         <a href="#portfolio">Portfólio</a>
-        <a href="#atividade">Atividade</a>
         <a href="#trajetoria">Trajetória</a>
         <a className="nav-contact" href="mailto:juniordaliessi@gmail.com">
           Contato <ArrowUpRight size={14} />
