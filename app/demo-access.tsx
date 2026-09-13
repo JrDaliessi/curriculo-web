@@ -40,7 +40,7 @@ export function DemoAccess({ email, password }: DemoAccessProps) {
         <span className="demo-access-icon"><KeyRound size={16} /></span>
         <div>
           <strong id="fincontrol-demo-title">Acesso de demonstração</strong>
-          <span>Conta preparada para recrutadores</span>
+          <span>Conta preparada para demonstração</span>
         </div>
       </div>
 

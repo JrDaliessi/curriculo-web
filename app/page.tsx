@@ -17,8 +17,19 @@ const skills = [
   { icon: Wrench, title: "Ferramentas", text: "Git/GitHub, Windows, Linux, Microsoft 365, métodos ágeis, fundamentos de ITIL e IA aplicada ao desenvolvimento com Codex (OpenAI) e Claude (Anthropic). Disponibilidade para capacitação em Fluig, Protheus e SOAP." },
 ];
 
+const finControlDemoEmail = process.env.FINCONTROL_DEMO_EMAIL?.trim();
+const finControlDemoPassword = process.env.FINCONTROL_DEMO_PASSWORD;
+const finControlDemo =
+  finControlDemoEmail && finControlDemoPassword
+    ? {
+        email: finControlDemoEmail,
+        href: "https://fin-control-two.vercel.app/login?demo=1",
+        password: finControlDemoPassword,
+      }
+    : undefined;
+
 const projects = [
-  { id: "fincontrol", index: "01", title: "FinControl", description: "PWA com cadastros financeiros, dashboard, autenticação, RLS, relatórios e arquitetura Feature-Based desenvolvida com TDD.", stack: ["TypeScript", "Supabase", "Jest", "TDD"], appHref: "https://fin-control-two.vercel.app", githubHref: "https://github.com/JrDaliessi/fin_control", demo: { email: "recrutador@fincontrol.example", password: "FinControl#Demo2026!" } },
+  { id: "fincontrol", index: "01", title: "FinControl", description: "PWA com cadastros financeiros, dashboard, autenticação, RLS, relatórios e arquitetura Feature-Based desenvolvida com TDD.", stack: ["TypeScript", "Supabase", "Jest", "TDD"], appHref: "https://fin-control-two.vercel.app", githubHref: "https://github.com/JrDaliessi/fin_control", demo: finControlDemo },
   { id: "clube", index: "02", title: "Gestão de Clube Social", description: "Plataforma de processos com associados, bar, portaria, eventos, reservas, pagamentos, QR Code, perfis de acesso, indicadores e auditoria.", stack: ["Next.js", "Supabase", "Mercado Pago", "PWA"], appHref: "https://social-club-three.vercel.app", githubHref: "https://github.com/JrDaliessi/clube-social-showcase" },
   { id: "eventos", index: "03", title: "Gestão de Eventos", description: "Sistema com calendário, Kanban, fornecedores, documentos, cronogramas, contratos, regras de negócio e acompanhamento por status.", stack: ["Next.js", "Supabase", "Serwist", "dnd-kit"], appHref: "https://agenda-eventos-jrdaliessis-projects.vercel.app", githubHref: "https://github.com/JrDaliessi/gestao-eventos-showcase" },
   { id: "barbearia", index: "04", title: "BarberShop SaaS", description: "SaaS responsivo para agenda, clientes, profissionais, serviços, comissões, pagamentos e dashboards operacionais.", stack: ["Next.js", "Supabase", "Stripe", "Recharts"], appHref: "https://barber-shop-five-blush.vercel.app", githubHref: "https://github.com/JrDaliessi/barbearia-saas-showcase" },
@@ -97,7 +108,7 @@ export default async function Home() {
               </div>
               {project.demo && <DemoAccess email={project.demo.email} password={project.demo.password} />}
               <div className="project-actions">
-                <a className="project-app-link" href={project.appHref} target="_blank" rel="noreferrer">{project.demo ? "Testar FinControl" : "Abrir aplicativo"} <ArrowUpRight size={16} /></a>
+                <a className="project-app-link" href={project.demo?.href ?? project.appHref} target="_blank" rel="noreferrer">{project.demo ? "Testar FinControl" : "Abrir aplicativo"} <ArrowUpRight size={16} /></a>
                 <a className="project-github-link" href={project.githubHref} target="_blank" rel="noreferrer" aria-label={`Ver código do ${project.title} no GitHub`}><Github size={18} /><span>GitHub</span></a>
               </div>
             </article>)}
